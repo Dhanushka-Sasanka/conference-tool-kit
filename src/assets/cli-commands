@@ -1,0 +1,9 @@
+
+
+ng generate m student --routing &&  ng generate c student --skipTests=true --style=css
+
+ng g c studentDashboard --skipTests=true --style=css
+ng g c studentDownload --skipTests=true --style=css
+ng g c studentReporting --skipTests=true --style=css
+ng g c studentSetting --skipTests=true --style=css
+ng g c studentSubmission --skipTests=true --style=css

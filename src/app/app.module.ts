@@ -22,7 +22,7 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 const APP_CONTAINERS = [
-  DefaultLayoutComponent
+  DefaultLayoutComponent, StudentLayoutComponent , ChairLayoutComponent
 ];
 
 import {
@@ -42,6 +42,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { LectureLoginComponent } from './views/lecture-login/lecture-login.component';
 import { LectureRegisterComponent } from './views/lecture-register/lecture-register.component';
+import {StudentLayoutComponent} from './containers/student-layout/student-layout.component';
+import {ChairLayoutComponent} from './containers/chair-layout';
 
 @NgModule({
   imports: [

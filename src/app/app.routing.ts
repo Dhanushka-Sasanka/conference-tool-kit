@@ -10,6 +10,7 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import {LectureLoginComponent} from './views/lecture-login/lecture-login.component';
 import {LectureRegisterComponent} from './views/lecture-register/lecture-register.component';
+import {StudentLayoutComponent} from './containers/student-layout/student-layout.component';
 
 export const routes: Routes = [
   {
@@ -97,6 +98,19 @@ export const routes: Routes = [
       {
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
+      }
+    ]
+  },
+  {
+    path: 'student',
+    component: StudentLayoutComponent,
+    data: {
+      title: 'Home'
+    },
+    children: [
+      {
+        path: 'student',
+        loadChildren: () => import('./views/student/student.module').then(m => m.StudentModule)
       }
     ]
   },
