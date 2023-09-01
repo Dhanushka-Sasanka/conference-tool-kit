@@ -10,7 +10,6 @@ import {StudentSubmissionComponent} from './student-submission/student-submissio
 const routes: Routes = [
   {
     path: '',
-    component: StudentComponent,
     data: {
       title: 'Student'
     },

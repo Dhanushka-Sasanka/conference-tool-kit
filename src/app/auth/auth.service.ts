@@ -1,24 +1,59 @@
-import { User } from './../@business/model/user';
-import { AuthenticationService } from './authentication.service';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {LoginRequest} from '../@business/model/LoginRequest';
+import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(this.auth.loggedIn());
-  private loggedInUserDetails = new BehaviorSubject<User>(this.auth.getUserFromLocalCache());
+  private baseUrl;
 
-  authStatus = this.loggedIn.asObservable();
-  userDetails = this.loggedInUserDetails.asObservable();
-
-  changeAuthStatus(value: boolean) {
-    this.loggedIn.next(value);
-  }
-  changeUserDetails(user:User){
-    this.loggedInUserDetails.next(user);
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private http: HttpClient) {
+    this.baseUrl = environment.baseUrl;
   }
 
-  constructor(private auth: AuthenticationService) { }
+  signIn(request: LoginRequest): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'signin', request,
+      {headers: new HttpHeaders({'Content-Type': 'application/json'})})
+      .pipe(map((resp) => {
+        sessionStorage.setItem('user', request.userName);
+        sessionStorage.setItem('token', 'HTTP_TOKEN ' + resp.token);
+        return resp;
+      }));
+  }
+
+  signUp(request: Request): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'signup', request, {
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      responseType: 'text' as 'json'
+    }).pipe(map((resp) => {
+      return resp;
+    }));
+  }
+
+  signOut() {
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
+
+    this.router.navigateByUrl('signin');
+  }
+
+  isUserSignedIn() {
+    return sessionStorage.getItem('token') !== null;
+  }
+
+  getSignedInUser() {
+    return sessionStorage.getItem('user') as string;
+  }
+
+  getToken() {
+    return sessionStorage.getItem('token') as string;
+  }
+
 }

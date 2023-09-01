@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
-import { DefaultLayoutComponent } from './containers';
+import {ChairLayoutComponent, DefaultLayoutComponent, StudentLayoutComponent} from './containers';
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
@@ -10,7 +10,6 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import {LectureLoginComponent} from './views/lecture-login/lecture-login.component';
 import {LectureRegisterComponent} from './views/lecture-register/lecture-register.component';
-import {StudentLayoutComponent} from './containers/student-layout/student-layout.component';
 
 export const routes: Routes = [
   {
@@ -105,12 +104,26 @@ export const routes: Routes = [
     path: 'student',
     component: StudentLayoutComponent,
     data: {
-      title: 'Home'
+      title: 'Student'
     },
     children: [
       {
-        path: 'student',
+        path: '',
         loadChildren: () => import('./views/student/student.module').then(m => m.StudentModule)
+      }
+    ]
+  },
+
+  {
+    path: 'chair',
+    component: ChairLayoutComponent,
+    data: {
+      title: 'Chair'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/lecture/lecture.module').then(m => m.LectureModule)
       }
     ]
   },

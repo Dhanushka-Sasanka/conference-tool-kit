@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+// @ts-ignore
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
 

@@ -2,7 +2,6 @@
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {JwtHelperService} from '@auth0/angular-jwt';
 import {environment} from '../../environments/environment';
 import {User} from '../@business/model/user';
 import {ShopOwner} from '../@business/model/shop_owner';
@@ -12,10 +11,10 @@ import {ShopOwner} from '../@business/model/shop_owner';
 })
 export class AuthenticationService {
 
-  public host: string = environment.baseURL;
+  public host: string = environment.baseUrl;
   public loggedInUserName!: string;
   private token!: string;
-  private jwtHelper = new JwtHelperService();
+  // private jwtHelper = new JwtHelperService();
 
   private iss = {
     login: `${this.host}/api/auth/login`,
