@@ -25,7 +25,7 @@ export class AuthenticationService {
   }
 
   public login(user: User): Observable<HttpResponse<any> | HttpErrorResponse> {
-    return this.http.post<HttpResponse<any> | HttpErrorResponse>(`${this.host}/api/auth/login`, user);
+      return this.http.post<HttpResponse<any> | HttpErrorResponse>(`${this.host}/api/auth/login`, user);
   }
 
   public register(shopOwner: ShopOwner): Observable<HttpResponse<any> | HttpErrorResponse> {

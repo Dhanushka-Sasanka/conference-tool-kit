@@ -1,6 +1,6 @@
 
 import {Component } from '@angular/core';
-import { navItems } from '../../_nav';
+import {navItems, navItemsChair} from '../../_nav';
 
 @Component({
   selector: 'app-chair-dashboard',
@@ -8,7 +8,7 @@ import { navItems } from '../../_nav';
 })
 export class ChairLayoutComponent {
   public sidebarMinimized = false;
-  public navItems = navItems;
+  public navItems = navItemsChair;
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
