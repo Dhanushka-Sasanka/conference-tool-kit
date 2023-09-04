@@ -29,6 +29,7 @@ import {ChairLayoutComponent} from './containers/chair-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {NotificationModule} from './notification.module';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -55,6 +56,7 @@ const APP_CONTAINERS = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ModalModule,
     NotificationModule
   ],
   declarations: [

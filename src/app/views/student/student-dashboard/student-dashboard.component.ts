@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {NotificationService} from '../../../@business/services/notification.service';
 import {NotificationType} from '../../../@business/enum/notificaiton-type.enum';
+import {PaperCheckService} from '../../../@business/services/paperCheck.service';
+import {SharedDataService} from '../../../@business/services/sharedServices';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -12,11 +14,17 @@ import {NotificationType} from '../../../@business/enum/notificaiton-type.enum';
 })
 export class StudentDashboardComponent implements OnInit {
 
-  uploadedFiles: Array<File>;
+  uploadedFile: File;
   private baseUrl;
+  formData = new FormData();
 
 
-  constructor(private router: Router, private http: HttpClient, private notificationService: NotificationService) {
+
+  constructor(private router: Router,
+              private http: HttpClient,
+              private notificationService: NotificationService,
+              private paperCheckService: PaperCheckService,
+              private sharedService: SharedDataService) {
     this.baseUrl = environment.baseUrl;
   }
 
@@ -24,21 +32,54 @@ export class StudentDashboardComponent implements OnInit {
   }
 
   proceedBtnClick() {
-    // this.router.navigate(['submission']);
+    this.formData.append('file', this.uploadedFile);
 
-    const formData = new FormData();
-    for (let i = 0; i < this.uploadedFiles.length; i++) {
-      formData.append('file', this.uploadedFiles[i], this.uploadedFiles[i].name);
-    }
-    this.http.post(this.baseUrl + 'api/upload', formData)
+    this.http.post(this.baseUrl + 'upload', this.formData)
       .subscribe((response) => {
         console.log('response received is ', response);
-        // @ts-ignore
-        this.notificationService(NotificationType.SUCCESS, response);
+        setTimeout(() => {
+          // @ts-ignore
+          this.notificationService.notify(NotificationType.SUCCESS, response['message']);
+        }, 5000);
+        this.sharedService.setFileData(this.formData);
+        this.paperMatchingApi();
+        this.layoutMatchingApi();
+        this.referenceMatchingApi();
       });
   }
 
   fileChange($event) {
-    this.uploadedFiles = $event.target.files;
+    this.uploadedFile = $event.target.files[0];
   }
+
+  paperMatchingApi() {
+    this.paperCheckService.paperCheck(this.formData)
+      .subscribe((response) => {
+        console.log('response received is ', response['type']);
+        this.sharedService.setData(true);
+        this.sharedService.setPaperType(response['type']);
+      });
+  }
+
+  layoutMatchingApi() {
+    this.paperCheckService.layoutCheck(this.formData)
+      .subscribe((response) => {
+        console.log('response received is ', response['message']);
+        this.sharedService.setData(true);
+        this.sharedService.setLayout(response['message']);
+      });
+
+  }
+
+  referenceMatchingApi() {
+
+    this.paperCheckService.layoutCheck(this.formData)
+      .subscribe((response) => {
+        console.log('response received is ', response['reference']);
+        this.sharedService.setData(true);
+        this.sharedService.setReference(response['reference']);
+      });
+  }
+
+
 }

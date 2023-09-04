@@ -17,25 +17,8 @@ import {NgCircleProgressModule} from 'ng-circle-progress';
     CommonModule,
     StudentRoutingModule,
     // Specify ng-circle-progress as an import
-    NgCircleProgressModule.forRoot({
-      'backgroundGradient': true,
-      'backgroundColor': '#998080',
-      'backgroundGradientStopColor': '#d1d1d1',
-      'backgroundOpacity': 0.5,
-      'backgroundStrokeWidth': 0,
-      'backgroundPadding': 0,
-      'radius': 92,
-      'space': 2,
-      'toFixed': 0,
-      'unitsFontSize': '17',
-      'outerStrokeGradient': true,
-      'outerStrokeWidth': 35,
-      'outerStrokeGradientStopColor': '#dea712',
-      'innerStrokeColor': '#82cd0a',
-      'innerStrokeWidth': 2,
-      'subtitleFontSize': '16',
-      'responsive': true
-    })
+
+    NgCircleProgressModule.forRoot()
   ]
 })
 export class StudentModule {
