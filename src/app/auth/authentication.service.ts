@@ -3,8 +3,11 @@ import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http'
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {User} from '../@business/model/user';
-import {ShopOwner} from '../@business/model/shop_owner';
+import {UserLoginRequest} from '../@business/model/UserLoginRequest';
+import {SignInRequest} from '../@business/model/SignInRequest';
+import {UserService} from '../@business/services/user.service';
+import {LoggedUser} from '../@business/model/LoggedUser';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +27,12 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-  public login(user: User): Observable<HttpResponse<any> | HttpErrorResponse> {
+  public login(user: UserLoginRequest): Observable<HttpResponse<any> | HttpErrorResponse> {
       return this.http.post<HttpResponse<any> | HttpErrorResponse>(`${this.host}/api/auth/login`, user);
   }
 
-  public register(shopOwner: ShopOwner): Observable<HttpResponse<any> | HttpErrorResponse> {
-    return this.http.post<HttpResponse<any> | HttpErrorResponse>(`${this.host}/api/auth/register`, shopOwner);
+  public register(userSignIn: SignInRequest): Observable<HttpResponse<any> | HttpErrorResponse> {
+    return this.http.post<HttpResponse<any> | HttpErrorResponse>(`${this.host}/api/auth/register`, userSignIn);
   }
 
   public logOut(): void {
@@ -54,11 +57,11 @@ export class AuthenticationService {
     return this.token;
   }
 
-  public addUserToLocalCache(user: User): void {
+  public addUserToLocalCache(user: LoggedUser): void {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  public getUserFromLocalCache(): User {
+  public getUserFromLocalCache(): LoggedUser {
     // tslint:disable-next-line:no-non-null-assertion
     return JSON.parse(localStorage.getItem('user')!);
   }

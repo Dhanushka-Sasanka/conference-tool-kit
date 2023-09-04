@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoginRequest} from '../@business/model/LoginRequest';
 import {map} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
+import {SignInRequest} from '../@business/model/SignInRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class AuthService {
       }));
   }
 
-  signUp(request: Request): Observable<any> {
+  signUp(request: SignInRequest): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'signup', request, {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       responseType: 'text' as 'json'

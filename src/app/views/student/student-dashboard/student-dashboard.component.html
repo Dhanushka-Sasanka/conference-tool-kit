@@ -22,26 +22,28 @@
     </div>
   </div><!--/.col-->
   <!--align-items-center mt-3-->
-  <div class="row ">
-    <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
-      <!--    <i class="fa fa-lightbulb-o"></i>-->
-      <button class="btn btn-primary mr-3" type="button">&nbsp;Tracks <i class="fa fa-arrow-circle-down"></i></button>
-      <button class="btn btn-primary" type="button">&nbsp;Reference Style <i class="fa fa-lightbulb-o"></i></button>
-    </div>
-  </div>
+
 
   <div class="zone">
 
     <div id="dropZ">
       <i class="fa fa-cloud-upload"></i>
-      <div>Drag and drop your file here</div>
+      <div>Drag and drop your research file here</div>
       <span>OR</span>
       <div class="selectFile">
         <label for="file">Select file</label>
-        <input id="file" name="files[]" type="file">
+        <input id="file" name="files[]" type="file"  (change)="fileChange($event)">
       </div>
-      <p>File size limit : 10 MB</p>
+      <p>File size limit : 100 MB</p>
     </div>
 
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+      <button (click)="proceedBtnClick()" class="btn btn-primary mr-3" routerLink="../submission" type="button">&nbsp;
+        PROCEED <i class="fa fa-arrow-circle-down"></i></button>
+      <!--      <button class="btn btn-primary" type="button">&nbsp;Reference Style <i class="fa fa-lightbulb-o"></i></button>-->
+    </div>
   </div>
 </div>

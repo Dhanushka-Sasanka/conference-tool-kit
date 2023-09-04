@@ -264,7 +264,7 @@ export const navItems: INavData[] = [
 export const navItemsStudent: INavData[] = [
   {
     name: 'Dashboard',
-    url: '/dashboard',
+    url: '/student/dashboard',
     icon: 'icon-speedometer',
     // badge: {
     //   variant: 'info',

@@ -18,10 +18,10 @@
           <div class="card-group">
             <div class="card">
               <div class="card-body">
-                <form>
+                <form (ngSubmit)="loginAction()" [formGroup]="loginForm">
                   <div class="text-center">
-
-                  <img class="text-center" src="../../../assets/img/brand/et_logo.png" alt="" style="width: 150px; height: 140px">
+                    <img alt="" class="text-center" src="../../../assets/img/brand/et_logo.png"
+                         style="width: 150px; height: 140px">
 
                   </div>
                   <h4 class="text-center">Welcome back!</h4>
@@ -30,16 +30,18 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Group ID" autocomplete="username" required>
+                    <input autocomplete="username" class="form-control" formControlName="userName" placeholder="User Name"
+                           required type="text">
                   </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" required>
+                    <input autocomplete="current-password" class="form-control" formControlName="userPwd" placeholder="Password"
+                           required type="password">
                   </div>
                   <div class="text-right mb-4">
-                    <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                    <button class="btn btn-link px-0" type="button">Forgot password?</button>
                   </div>
 
                   <div class="row text-center">
@@ -48,7 +50,7 @@
                   </div>
                   <div class="row text-center">
                     <div class="col-12">
-                      <button type="button" class="btn btn-primary px-4">Login</button>
+                      <button [disabled]="!loginForm.valid" class="btn btn-primary px-4" type="submit">Login</button>
                     </div>
                   </div>
                 </form>

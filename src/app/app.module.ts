@@ -26,6 +26,9 @@ import {LectureLoginComponent} from './views/lecture-login/lecture-login.compone
 import {LectureRegisterComponent} from './views/lecture-register/lecture-register.component';
 import {StudentLayoutComponent} from './containers/student-layout/student-layout.component';
 import {ChairLayoutComponent} from './containers/chair-layout';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {NotificationModule} from './notification.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -48,7 +51,11 @@ const APP_CONTAINERS = [
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NotificationModule
   ],
   declarations: [
     AppComponent,
