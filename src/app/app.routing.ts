@@ -105,7 +105,7 @@ export const routes: Routes = [
   },
   {
     path: 'student',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     component: StudentLayoutComponent,
     data: {
       title: 'Student'
@@ -120,10 +120,10 @@ export const routes: Routes = [
 
   {
     path: 'chair',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     component: ChairLayoutComponent,
     data: {
-      roles: [Role.Admin],
+      // roles: [Role.Admin],
       title: 'Chair'
     },
     children: [

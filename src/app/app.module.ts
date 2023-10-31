@@ -30,7 +30,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NotificationModule} from './notification.module';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {ErrorInterceptorInterceptor} from './auth/error-interceptor.interceptor';
+/*import {ErrorInterceptorInterceptor} from './auth/error-interceptor.interceptor';*/
 import {AuthenticationService} from './auth/authentication.service';
 import {ActivatedRouteSnapshot, RouterModule} from '@angular/router';
 
@@ -77,7 +77,7 @@ const APP_CONTAINERS = [
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true , },
+    /*{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true , },*/
     AuthenticationService
   ],
   bootstrap: [AppComponent]
