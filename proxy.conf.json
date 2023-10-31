@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "ec2-52-221-233-118.ap-southeast-1.compute.amazonaws.com:8080/paper_matching_api",
+    "target": "ec2-18-218-16-191.us-east-2.compute.amazonaws.com:5000",
     "secure": true,
     "changeOrigin": true,
     "pathRewrite": {

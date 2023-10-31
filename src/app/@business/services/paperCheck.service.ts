@@ -38,6 +38,7 @@ export class PaperCheckService {
   }
 
   summarization(request: FormData): Observable<any[]> {
+    console.log("REC"+ request);
     return this.http.post<any>(this.summarizationUrl, request);
   }
 

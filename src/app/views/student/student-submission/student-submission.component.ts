@@ -20,6 +20,7 @@ export class StudentSubmissionComponent implements OnInit {
   reference: any;
 
   percentage: string = '0';
+  suggestion: string;
 
   @ViewChild('typeModal') public typeModal: ModalDirective;
   @ViewChild('layoutModal') public layoutModal: ModalDirective;
@@ -29,7 +30,7 @@ export class StudentSubmissionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.suggestion = 'please wait for results';
     this.sharedService.getData()
       .subscribe(result => {
           console.log(result);
@@ -71,8 +72,14 @@ export class StudentSubmissionComponent implements OnInit {
   private getReference() {
     this.sharedService.getReference()
       .subscribe(result => {
-          this.reference = result;
+          const values = Object.keys(result).map(key =>
+            key + ' : ' + result[key] + '\n'
+          );
+          const commaJoinedValues = values.join(',');
+          console.log(commaJoinedValues);
+          this.reference = commaJoinedValues;
           this.percentage = '100';
+          this.suggestion = 'correct issues and submit.';
         },
         error => {
           console.warn('failed to get data', error);

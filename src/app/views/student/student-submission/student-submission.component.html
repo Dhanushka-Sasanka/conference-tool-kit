@@ -65,7 +65,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                <p>Type :{{type}}</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="typeModal.hide()">Close</button>
@@ -102,7 +102,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>One fine body&hellip;</p>
+              <p>Layout :{{layout}}</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" (click)="layoutModal.hide()">Close</button>
@@ -122,7 +122,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <div class="text-muted text-uppercase font-weight-bold font-xs">Reference :{{reference}}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">Reference : {{suggestion}}</div>
           <button class=" float-right btn btn-square btn-sm btn-success" type="button" data-toggle="modal" (click)="referenceMatchingModal.show()">See More
             <i class="fa fa-angle-right "></i></button>
         </div>
@@ -138,7 +138,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>One fine body&hellip;</p>
+              <p>  Reference :{{ reference }}</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" (click)="referenceMatchingModal.hide()">Close</button>

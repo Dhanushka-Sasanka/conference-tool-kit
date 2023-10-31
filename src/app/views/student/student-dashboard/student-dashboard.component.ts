@@ -32,7 +32,7 @@ export class StudentDashboardComponent implements OnInit {
 
   proceedBtnClick() {
     this.formData.append('file', this.uploadedFile);
-
+    // this.sharedService.setFileData(this.uploadedFile);
     this.http.post(this.baseUrl + 'upload', this.formData)
       .subscribe((response) => {
         console.log('response received is ', response);
@@ -40,7 +40,6 @@ export class StudentDashboardComponent implements OnInit {
           // @ts-ignore
           this.notificationService.notify(NotificationType.SUCCESS, response['message']);
         }, 5000);
-        this.sharedService.setFileData(this.formData);
         this.paperMatchingApi();
         this.layoutMatchingApi();
         this.referenceMatchingApi();
