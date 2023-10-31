@@ -13,7 +13,7 @@ import {P404Component} from './views/error/404.component';
 import {P500Component} from './views/error/500.component';
 import {LoginComponent} from './views/login/login.component';
 import {RegisterComponent} from './views/register/register.component';
-import {AppAsideModule, AppBreadcrumbModule, AppFooterModule, AppHeaderModule, AppSidebarModule,} from '@coreui/angular';
+import {AppAsideModule, AppBreadcrumbModule, AppFooterModule, AppHeaderModule, AppSidebarModule} from '@coreui/angular';
 
 // Import routing module
 import {AppRoutingModule} from './app.routing';
@@ -24,12 +24,15 @@ import {TabsModule} from 'ngx-bootstrap/tabs';
 import {ChartsModule} from 'ng2-charts';
 import {LectureLoginComponent} from './views/lecture-login/lecture-login.component';
 import {LectureRegisterComponent} from './views/lecture-register/lecture-register.component';
-import {StudentLayoutComponent} from './containers/student-layout/student-layout.component';
-import {ChairLayoutComponent} from './containers/chair-layout';
+import {StudentLayoutComponent} from './containers';
+import {ChairLayoutComponent} from './containers';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NotificationModule} from './notification.module';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import {ErrorInterceptorInterceptor} from './auth/error-interceptor.interceptor';
+import {AuthenticationService} from './auth/authentication.service';
+import {ActivatedRouteSnapshot, RouterModule} from '@angular/router';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -57,7 +60,8 @@ const APP_CONTAINERS = [
     ReactiveFormsModule,
     HttpClientModule,
     ModalModule,
-    NotificationModule
+    NotificationModule,
+    RouterModule
   ],
   declarations: [
     AppComponent,
@@ -72,7 +76,10 @@ const APP_CONTAINERS = [
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true , },
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

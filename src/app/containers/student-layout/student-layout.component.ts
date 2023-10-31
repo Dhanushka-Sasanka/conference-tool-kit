@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {navItemsStudent} from '../../_nav';
+import {AuthenticationService} from '../../auth/authentication.service';
 
 @Component({
   selector: 'app-dashbard',
@@ -11,5 +12,12 @@ export class StudentLayoutComponent {
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
+  }
+
+  constructor(private authenticationService: AuthenticationService) {
+  }
+
+  logout() {
+    this.authenticationService.logout();
   }
 }

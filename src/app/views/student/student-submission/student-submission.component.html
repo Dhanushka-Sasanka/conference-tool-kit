@@ -50,10 +50,30 @@
         </div>
         <div class=" card-footer">
           <div class="text-muted text-uppercase font-weight-bold font-xs">Type :{{type}}</div>
-          <button class=" float-right btn btn-square btn-sm btn-success" type="button">See More
+          <button class=" float-right btn btn-square btn-sm btn-success" type="button" data-toggle="modal" (click)="typeModal.show()">See More
             <i class="fa fa-angle-right "></i></button>
-        </div>
 
+
+        </div>
+        <div bsModal #typeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Paper Matching Issues</h4>
+                <button type="button" class="close" (click)="typeModal.hide()" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>One fine body&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="typeModal.hide()">Close</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
       </div>
       <div class="card">
@@ -66,11 +86,32 @@
         </div>
         <div class="card-footer">
           <div class="text-muted text-uppercase font-weight-bold font-xs">Layout :{{layout}}</div>
-          <button class=" float-right btn btn-square btn-sm btn-success" type="button">See More
+          <button class=" float-right btn btn-square btn-sm btn-success" type="button" data-toggle="modal" (click)="layoutModal.show()">See More
             <i class="fa fa-angle-right"></i></button>
 
         </div>
       </div>
+
+      <div bsModal #layoutModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Paper Layout Issues</h4>
+              <button type="button" class="close" (click)="layoutModal.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="layoutModal.hide()">Close</button>
+              <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
 
       <div class="card">
         <div class="card-body p-3 clearfix">
@@ -82,10 +123,31 @@
         </div>
         <div class="card-footer">
           <div class="text-muted text-uppercase font-weight-bold font-xs">Reference :{{reference}}</div>
-          <button class=" float-right btn btn-square btn-sm btn-success" type="button">See More
+          <button class=" float-right btn btn-square btn-sm btn-success" type="button" data-toggle="modal" (click)="referenceMatchingModal.show()">See More
             <i class="fa fa-angle-right "></i></button>
         </div>
       </div>
+
+      <div bsModal #referenceMatchingModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Paper Reference Matching Issues</h4>
+              <button type="button" class="close" (click)="referenceMatchingModal.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="referenceMatchingModal.hide()">Close</button>
+              <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
     </div>
   </div>
 </div>

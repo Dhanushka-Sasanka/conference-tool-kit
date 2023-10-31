@@ -6,7 +6,7 @@
           <div class="card-group">
             <div class="card">
               <div class="card-body">
-                <form>
+                <form (ngSubmit)="loginAction()" [formGroup]="loginForm">
                   <div class="text-center">
 
                     <img class="text-center" src="../../../assets/img/brand/et_logo.png" alt="" style="width: 150px; height: 140px">
@@ -18,13 +18,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Lecture ID" autocomplete="username" required>
                   </div>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" required>
                   </div>
                   <div class="text-right mb-4">
                     <button type="button" class="btn btn-link px-0">Recover password?</button>

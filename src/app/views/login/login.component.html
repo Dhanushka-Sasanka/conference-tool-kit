@@ -26,19 +26,19 @@
                   </div>
                   <h4 class="text-center">Welcome back!</h4>
                   <p class="text-muted text-center">Log in to your account</p>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-user"></i></span>
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                    <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                      <div *ngIf="f.userName.errors.required">Username is required</div>
                     </div>
-                    <input autocomplete="username" class="form-control" formControlName="userName" placeholder="User Name"
-                           required type="text">
                   </div>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" formControlName="userPwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userPwd.errors }" />
+                    <div *ngIf="submitted && f.userPwd.errors" class="invalid-feedback">
+                      <div *ngIf="f.userPwd.errors.required">Password is required</div>
                     </div>
-                    <input autocomplete="current-password" class="form-control" formControlName="userPwd" placeholder="Password"
-                           required type="password">
                   </div>
                   <div class="text-right mb-4">
                     <button class="btn btn-link px-0" type="button">Forgot password?</button>
@@ -50,7 +50,11 @@
                   </div>
                   <div class="row text-center">
                     <div class="col-12">
-                      <button [disabled]="!loginForm.valid" class="btn btn-primary px-4" type="submit">Login</button>
+                      <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Login
+                      </button>
+                      <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                     </div>
                   </div>
                 </form>

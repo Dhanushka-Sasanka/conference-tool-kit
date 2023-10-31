@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {SharedDataService} from '../../../@business/services/sharedServices';
+import {ModalDirective} from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-student-submission',
@@ -19,6 +20,10 @@ export class StudentSubmissionComponent implements OnInit {
   reference: any;
 
   percentage: string = '0';
+
+  @ViewChild('typeModal') public typeModal: ModalDirective;
+  @ViewChild('layoutModal') public layoutModal: ModalDirective;
+  @ViewChild('referenceMatchingModal') public referenceMatchingModal: ModalDirective;
 
   constructor(private sharedService: SharedDataService) {
   }

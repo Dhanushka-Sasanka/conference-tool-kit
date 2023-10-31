@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
@@ -6,6 +6,7 @@ import {NotificationService} from '../../../@business/services/notification.serv
 import {NotificationType} from '../../../@business/enum/notificaiton-type.enum';
 import {PaperCheckService} from '../../../@business/services/paperCheck.service';
 import {SharedDataService} from '../../../@business/services/sharedServices';
+import {AuthenticationService} from '../../../auth/authentication.service';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -15,10 +16,8 @@ import {SharedDataService} from '../../../@business/services/sharedServices';
 export class StudentDashboardComponent implements OnInit {
 
   uploadedFile: File;
-  private baseUrl;
   formData = new FormData();
-
-
+  private baseUrl;
 
   constructor(private router: Router,
               private http: HttpClient,
@@ -73,11 +72,11 @@ export class StudentDashboardComponent implements OnInit {
 
   referenceMatchingApi() {
 
-    this.paperCheckService.layoutCheck(this.formData)
+    this.paperCheckService.referenceCheck(this.formData)
       .subscribe((response) => {
-        console.log('response received is ', response['reference']);
+        console.log('response received is ', response);
         this.sharedService.setData(true);
-        this.sharedService.setReference(response['reference']);
+        this.sharedService.setReference(response);
       });
   }
 

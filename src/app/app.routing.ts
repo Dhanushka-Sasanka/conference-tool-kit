@@ -10,6 +10,9 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import {LectureLoginComponent} from './views/lecture-login/lecture-login.component';
 import {LectureRegisterComponent} from './views/lecture-register/lecture-register.component';
+import {AuthGuard} from './auth/auth.guard';
+import {Role} from './@business/enum/role-type';
+import {AuthenticationService} from './auth/authentication.service';
 
 export const routes: Routes = [
   {
@@ -86,10 +89,10 @@ export const routes: Routes = [
     //     path: 'icons',
     //     loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
     //   },
-    //   {
-    //     path: 'notifications',
-    //     loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
-    //   },
+/*      {
+        path: 'notifications',
+        loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
+      },*/
     //   {
     //     path: 'theme',
     //     loadChildren: () => import('./views/theme/theme.module').then(m => m.ThemeModule)
@@ -102,6 +105,7 @@ export const routes: Routes = [
   },
   {
     path: 'student',
+    canActivate: [AuthGuard],
     component: StudentLayoutComponent,
     data: {
       title: 'Student'
@@ -116,8 +120,10 @@ export const routes: Routes = [
 
   {
     path: 'chair',
+    canActivate: [AuthGuard],
     component: ChairLayoutComponent,
     data: {
+      roles: [Role.Admin],
       title: 'Chair'
     },
     children: [
@@ -132,6 +138,6 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
 })
 export class AppRoutingModule {}

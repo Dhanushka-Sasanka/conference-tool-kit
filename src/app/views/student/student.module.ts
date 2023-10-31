@@ -9,6 +9,7 @@ import {StudentReportingComponent} from './student-reporting/student-reporting.c
 import {StudentSubmissionComponent} from './student-submission/student-submission.component';
 import {StudentSettingComponent} from './student-setting/student-setting.component';
 import {NgCircleProgressModule} from 'ng-circle-progress';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {NgCircleProgressModule} from 'ng-circle-progress';
     StudentRoutingModule,
     // Specify ng-circle-progress as an import
 
-    NgCircleProgressModule.forRoot()
+    NgCircleProgressModule.forRoot(),
+    ModalModule.forRoot()
   ]
 })
 export class StudentModule {

@@ -6,9 +6,10 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:8080/api/',
-  paperCheckUrl: 'http://ec2-52-221-233-118.ap-southeast-1.compute.amazonaws.com:8080/paper_matching_api',
-  layoutCheckUrl: 'http://ec2-52-221-233-118.ap-southeast-1.compute.amazonaws.com:8080/layout_parser_api',
-  referenceCheckUrl: 'http://ec2-52-221-233-118.ap-southeast-1.compute.amazonaws.com:8080/reference_validation_api',
-  summarizationUrl: 'http://ec2-52-221-233-118.ap-southeast-1.compute.amazonaws.com:8080/summarization_api'
+  baseUrlAuth: 'http://localhost:8080/api/auth/',
+  paperCheckUrl: 'ec2-3-16-138-68.us-east-2.compute.amazonaws.com:5000/inference_paper_matching',
+  layoutCheckUrl: 'ec2-3-16-138-68.us-east-2.compute.amazonaws.com:5000/inference_layout_parser',
+  referenceCheckUrl: 'ec2-3-16-138-68.us-east-2.compute.amazonaws.com:5000/inference_reference_validation',
+  summarizationUrl: 'ec2-52-221-233-118.ap-southeast-1.compute.amazonaws.com:8080/summarization_api'
 
 };
