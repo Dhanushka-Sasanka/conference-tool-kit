@@ -7,6 +7,7 @@ import {UserLoginRequest} from '../@business/model/UserLoginRequest';
 import {SignInRequest} from '../@business/model/SignInRequest';
 import {UserService} from '../@business/services/user.service';
 import {LoggedUser} from '../@business/model/LoggedUser';
+import {Router} from '@angular/router';
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class AuthenticationService {
     register: `${this.host}/api/auth/register`
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient , private router: Router) {
   }
 
   public login(user: UserLoginRequest): Observable<HttpResponse<any> | HttpErrorResponse> {
@@ -116,6 +117,7 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
+    this.router.navigateByUrl('/');
   }
 
 }
